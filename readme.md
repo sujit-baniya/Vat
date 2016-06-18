@@ -1,5 +1,5 @@
-# PHP TargetPay Library
-[![Build Status](https://travis-ci.org/TPWeb/vat.svg?branch=master)](https://travis-ci.org/TPWeb/vat)
+# PHP VAT Library
+[![Build Status](https://travis-ci.org/TPWeb/Vat.svg?branch=master)](https://travis-ci.org/TPWeb/Vat)
 [![Coverage Status](https://coveralls.io/repos/github/TPWeb/vat/badge.svg?branch=master)](https://coveralls.io/github/TPWeb/vat?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/tpweb/vat/v/stable.svg)](https://packagist.org/packages/tpweb/vat)
 [![Latest Unstable Version](https://poser.pugx.org/tpweb/vat/v/unstable.svg)](https://packagist.org/packages/tpweb/vat)
