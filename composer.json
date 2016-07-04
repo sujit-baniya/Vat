@@ -1,8 +1,8 @@
 {
   "name": "tpweb/vat",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "PHP VAT Library",
-  "keywords": ["vat validation", "vat"],
+  "keywords": ["vat validation", "vat", "ogm"],
   "homepage": "http://www.tpweb.org/my-projects/php-vat/",
   "type": "library",
   "license": "LGPL",

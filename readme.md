@@ -31,13 +31,27 @@ You can use the facade for shorter code. Add this to your aliases:
 ```php
 $vatnr = "BE....";
 $vat = new Vat($vatnr);
+if($vat->isVatValid()) {
+    echo "VAT is valid!";
+}
 ```
-## Calculation
+### laravel validation
+```php
+$this->validate($request, ['vatnumber' => 'vat']);
+```
+## Format (Not working)
 ```php
 $vatnr = "BE....";
 $vat = new Vat($vatnr);
+echo $vat->vatFormat();
 ```
-
+## Genearte OGM
+```php
+$generator = new Vat;
+echo $generator->generateOGM(1); //Output: 000000000101
+echo $generator->generateOGM(1, "111"); //Output: 111000000195
+echo $generator->generateOGM(2, "333", true); //Output: 333/0000/00290
+```
 
 The complete documentation can be found at: [http://www.tpweb.org/my-projects/php-vat-library/](http://www.tpweb.org/my-projects/php-vat-library/)
 

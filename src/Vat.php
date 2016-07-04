@@ -98,7 +98,7 @@ class Vat
     }
     
     public function vatFormat() {
-        return wordwrap($this->vat, 4, ' ', true);
+        return substr($this->vat, 0, 2) . wordwrap(substr($this->vat, 2), 3, '.', true);
     }
     
     private function setCountry() {
