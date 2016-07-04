@@ -111,6 +111,22 @@ class Vat
         return $number;
     }
     
+    public function generateOGM($number, $prefix = "", $format = false) {
+        $ogmPrefix = $prefix . str_pad($number, 10 - strlen($prefix), "0", STR_PAD_LEFT);
+        $numeric = intval($ogmPrefix);
+        $rest = $numeric % 97;
+        if ($rest < 10) {
+            $nul = 0;
+            $rest = $nul.$rest;
+        }
+        $ogm = $ogmPrefix . $rest;
+        
+        if($format) {
+            return substr($ogm, 0, 3) . "/" . substr($ogm, 3, 4) . "/" . substr($ogm, 7, 5);
+        }
+        return $ogm;
+    }
+    
     public function ip($ip) {
         $response = file_get_contents('http://ip2c.org/' . $ip);
         if(!empty($response)) {

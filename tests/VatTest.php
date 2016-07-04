@@ -30,4 +30,19 @@ class VatTest extends \PHPUnit_Framework_TestCase
         $validator = new Vat("BE0653.855.818");
         $this->assertTrue($validator->isVatValid());
     }
+    
+    public function testOGM() {
+        $ogm = new Vat;
+        $this->assertEquals("000000000101", $ogm->generateOGM(1));
+    }
+    
+    public function testOGMMetPrefix() {
+        $ogm = new Vat;
+        $this->assertEquals("111000000195", $ogm->generateOGM(1, "111"));
+    }
+    
+    public function testOGMMetPrefixFormat() {
+        $ogm = new Vat;
+        $this->assertEquals("333/0000/00290", $ogm->generateOGM(2, "333", true));
+    }
 }
