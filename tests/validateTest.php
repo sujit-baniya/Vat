@@ -50,7 +50,7 @@ class validateTest extends \PHPUnit_Framework_TestCase
         $translator->shouldReceive('trans')->once()->with('validation.custom')->andReturn('validation.custom');
         $translator->shouldReceive('trans')->once()->with('validation.custom.foo.vat')->andReturn('validation.custom.foo.vat');
         $translator->shouldReceive('trans')->once()->with('validation.vat')->andReturn('validation.vat');
-        $translator->shouldReceive('trans')->once()->with('validation.attributes.foo')->andReturn('validation.attributes.foo');
+        $translator->shouldReceive('trans')->once()->with('validation.attributes')->andReturn('validation.attributes');
 
         $factory = new Factory($translator, $container);
         $factory->extend('vat', 'TPWeb\Vat\Validation\ValidatorExtensions@validateVat', ':attribute must be a valid VAT');
