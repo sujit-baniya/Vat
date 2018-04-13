@@ -26,7 +26,7 @@ class validateTest extends \PHPUnit_Framework_TestCase
         $extensions = new ValidatorExtensions($validator);
 
         $container = Mockery::mock('Illuminate\Container\Container');
-        $translator = Mockery::mock('Symfony\Component\Translation\TranslatorInterface');
+        $translator = Mockery::mock('Illuminate\Contracts\Translation\Translator');
 
         $container->shouldReceive('make')->once()->with('TPWeb\Vat\Validation\ValidatorExtensions')->andReturn($extensions);
         $validator->shouldReceive('isVat')->once()->with('BE0653855818')->andReturn(true);
@@ -43,7 +43,7 @@ class validateTest extends \PHPUnit_Framework_TestCase
         $extensions = new ValidatorExtensions($validator);
 
         $container = Mockery::mock('Illuminate\Container\Container');
-        $translator = Mockery::mock('Symfony\Component\Translation\TranslatorInterface');
+        $translator = Mockery::mock('Illuminate\Contracts\Translation\Translator');
 
         $container->shouldReceive('make')->once()->with('TPWeb\Vat\Validation\ValidatorExtensions')->andReturn($extensions);
         $validator->shouldReceive('isVat')->once()->with('BE0650005818')->andReturn(false);
