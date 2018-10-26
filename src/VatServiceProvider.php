@@ -36,7 +36,7 @@ class VatServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		AliasLoader::getInstance()->alias('Vat', 'TPWeb\Vat\Vat');
-    	$this->loadTranslationsFrom(__DIR__.'/lang', 'vat');
+    		$this->loadTranslationsFrom(__DIR__.'/lang', 'vat');
 		$this->addNewRules();
 	}
 
