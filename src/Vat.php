@@ -3,6 +3,8 @@ namespace TPWeb\Vat;
 
 use SoapClient;
 use SoapFault;
+use Exception;
+
 /**
  *
  * PHP Vat Library
@@ -84,7 +86,9 @@ class Vat
                 ]);
                 return $result->valid;
             } catch (SoapFault $e) {
-                return false;
+                if($e->getMessage() !== "MS_UNAVAILABLE") {
+                    return false;
+                }
             }
         }
         throw new Exception('The VAT check service is currently unavailable. Please try again later.');
