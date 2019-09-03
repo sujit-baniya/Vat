@@ -3,6 +3,7 @@ namespace TPWeb\Vat;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 /**
  *
@@ -70,7 +71,7 @@ class VatServiceProvider extends ServiceProvider
 
 	protected function extendValidator($rule)
 	{
-		$method = 'validate' . studly_case($rule);
+		$method = 'validate' . Str::studly($rule);
 		$translation = $this->app['translator']->get('vat::validation');
 
 		$this->app['validator']->extend($rule, 'TPWeb\Vat\Validation\ValidatorExtensions@' . $method, $translation[$rule]);
