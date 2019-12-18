@@ -11,7 +11,11 @@
 Require this package in your `composer.json` and update composer.
 
 ```php
-"tpweb/vat": "~1.*"
+"tpweb/vat": "^1.3"
+```
+Or
+```php
+composer require tpweb/vat
 ```
 
 After updating composer, add the ServiceProvider to the providers array in `config/app.php`
@@ -39,12 +43,19 @@ if($vat->isVatValid()) {
 ```php
 $this->validate($request, ['vatnumber' => 'vat']);
 ```
+When the service is down a ServiceUnavailableException exception is thrown. To allow the validation to succeed when the service is down you can add an option with the default value when to the validation.
+```php
+$this->validate($request, ['vatnumber' => 'vat:true']);
+```
+
 ## Format (Not working)
 ```php
 $vatnr = "BE....";
 $vat = new Vat($vatnr);
 echo $vat->vatFormat();
 ```
+
+
 ## Genearte OGM
 ```php
 $generator = new Vat;
