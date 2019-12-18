@@ -2,6 +2,7 @@
 
 use TPWeb\Vat\Vat;
 use TPWeb\Vat\Validation\Validator;
+use TPWeb\Vat\ServiceUnavailableException;
 
 class ValidatorExtensions
 {
@@ -17,6 +18,13 @@ class ValidatorExtensions
 	
 	public function validateVat($attribute, $value, $parameters)
 	{
-        	return $this->validator->isVat($value);
+		try {
+		    return $this->validator->isVat($value);
+		} catch(ServiceUnavailableException $e) {
+		    if(isset($parameters[0])) {
+			return $parameters[0] == 'true';
+		    }
+		}
+		return false;
 	}
 }
