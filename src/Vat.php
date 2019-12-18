@@ -86,12 +86,15 @@ class Vat
                 ]);
                 return $result->valid;
             } catch (SoapFault $e) {
+                if($e->getMessage() === 'SERVICE_UNAVAILABLE') {
+                    throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.', $e);
+                }
                 if($e->getMessage() !== "MS_UNAVAILABLE") {
                     return false;
                 }
             }
         }
-        throw new Exception('The VAT check service is currently unavailable. Please try again later.');
+        throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.');
         
     }
     
