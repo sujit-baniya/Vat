@@ -1,4 +1,4 @@
-<?php namespace TPWeb\Vat\Validation;
+<?php namespace TPWeb\Vat\validation;
 
 use TPWeb\Vat\Vat;
 use TPWeb\Vat\Validation\Validator;
