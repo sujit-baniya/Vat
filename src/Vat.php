@@ -22,7 +22,7 @@ class Vat
     private $number;
     private $country;
     
-    const VAT_SERVICE_URL = 'http://ec.europa.eu/taxation_customs/vies/checkVatTestService.wsdl';
+    const VAT_SERVICE_URL = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
 
     /**
      * Construct Vat
