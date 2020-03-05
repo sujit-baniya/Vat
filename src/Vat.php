@@ -1,5 +1,5 @@
 <?php
-namespace TPWeb\Vat;
+namespace MadeITBelgium\Vat;
 
 use SoapClient;
 use SoapFault;
@@ -10,7 +10,7 @@ use Exception;
  * PHP Vat Library
  *
  * @version    1.0.0
- * @package    tpweb/vat
+ * @package    madeitbelgium/vat
  * @copyright  Copyright (c) 2016 Made I.T. (http://www.madeit.be) - TPWeb.org (http://www.tpweb.org)
  * @author     Made I.T. <info@madeit.be>
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
@@ -32,6 +32,7 @@ class Vat
         if($vat != null) {
             $this->setVat($vat);
         }
+        return $this;
     }
 
     /**
@@ -45,6 +46,7 @@ class Vat
             $this->number = $this->setNumber();
             $this->country = $this->setCountry();
         }
+        return $this;
     }
 
     /**
@@ -95,7 +97,33 @@ class Vat
             }
         }
         throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.');
-        
+    }
+    
+    
+    public function get() {
+        try {
+            $client = new SoapClient(self::VAT_SERVICE_URL);
+        } catch (SoapFault $e) {
+            $client = false;
+        }
+        if ($client) {
+            try {
+                
+                $result = $client->checkVat([
+                    'countryCode' => $this->country,
+                    'vatNumber'   => $this->number,
+                ]);
+                return $result->valid;
+            } catch (SoapFault $e) {
+                if($e->getMessage() === 'SERVICE_UNAVAILABLE') {
+                    throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.', $e);
+                }
+                if($e->getMessage() !== "MS_UNAVAILABLE") {
+                    return false;
+                }
+            }
+        }
+        throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.');
     }
     
     public function vatClearFormat() {
@@ -132,14 +160,5 @@ class Vat
             return substr($ogm, 0, 3) . "/" . substr($ogm, 3, 4) . "/" . substr($ogm, 7, 5);
         }
         return $ogm;
-    }
-    
-    public function ip($ip) {
-        $response = file_get_contents('http://ip2c.org/' . $ip);
-        if(!empty($response)) {
-            $parts = explode( ';', $response );
-            return $parts[1] === 'ZZ' ? '' : $parts[1];
-        }
-        return '';
     }
 }
