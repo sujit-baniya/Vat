@@ -1,15 +1,14 @@
 {
-  "name": "tpweb/vat",
-  "version": "1.4.1",
+  "name": "madeitbelgium/vat",
   "description": "PHP VAT Library",
   "keywords": ["vat validation", "vat", "ogm"],
-  "homepage": "http://www.tpweb.org/my-projects/php-vat/",
+  "homepage": "http://www.madeit.be/",
   "type": "library",
   "license": "LGPL-3.0-or-later",
   "authors": [
     {
       "name": "Tjebbe Lievens - Made I.T.",
-      "homepage": "http://www.tpweb.org",
+      "homepage": "http://www.madeit.be",
       "email": "tjebbe.lievens@madeit.be"
     }
   ],
@@ -19,7 +18,7 @@
   },
   "require-dev": {
       "phpunit/phpunit": "5.*|6.*|7.*",
-      "mockery/mockery": "^0.9",
+      "mockery/mockery": "^1.3",
       "illuminate/container": "5.*|6.*|7.*",
       "illuminate/validation": "5.*|6.*|7.*"
   },
@@ -28,16 +27,16 @@
       "src/"
     ],
       "psr-4": {
-          "TPWeb\\Vat\\": "src/"
+          "MadeITBelgium\\Vat\\": "src/"
       }
   },
   "extra": {
        "laravel": {
            "providers": [
-               "TPWeb\\Vat\\VatServiceProvider"
+               "MadeITBelgium\\Vat\\ServiceProvider\\Vat"
            ],
             "aliases": {
-                "Vat": "TPWeb\\Vat\\VatFacade"
+                "Vat": "MadeITBelgium\\Vat\\Facade\\Vat"
             }
        }
     }

@@ -1,12 +1,12 @@
-<?php namespace TPWeb\Vat\validation;
+<?php namespace MadeITBelgium\Vat\validation;
 
-use TPWeb\Vat\Vat;
+use MadeITBelgium\Vat\Vat;
 
 class Validator
 {
-	public function isVat($value)
-	{
-		$vat = new Vat($value);
-		return $vat->isVatValid();
-	}
+    public function isVat($value)
+    {
+        $vat = new Vat($value);
+        return $vat->isVatValid();
+    }
 }

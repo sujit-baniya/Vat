@@ -1,5 +1,5 @@
 <?php
-namespace MadeITBelgium\Vat;
+namespace MadeITBelgium\Vat\Facade;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Facade;
  * @author     Made I.T. <info@madeit.be>
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
  */
-class VatFacade extends Facade {
+class Vat extends Facade {
 
 	/**
 	 * Get the registered name of the component.

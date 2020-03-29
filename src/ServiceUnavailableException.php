@@ -1,5 +1,5 @@
 <?php
-namespace TPWeb\Vat;
+namespace MadeITBelgium\Vat;
 
 
 use Exception;

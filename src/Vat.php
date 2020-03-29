@@ -21,6 +21,7 @@ class Vat
     private $vat;
     private $number;
     private $country;
+    private $data;
     
     const VAT_SERVICE_URL = 'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl';
 
@@ -74,33 +75,58 @@ class Vat
     }
     
     public function isVatValid() {
-        try {
-            $client = new SoapClient(self::VAT_SERVICE_URL);
-        } catch (SoapFault $e) {
-            $client = false;
+        if(empty($this->data)) {
+            $this->load();
         }
-        if ($client) {
-            try {
-                
-                $result = $client->checkVat([
-                    'countryCode' => $this->country,
-                    'vatNumber'   => $this->number,
-                ]);
-                return $result->valid;
-            } catch (SoapFault $e) {
-                if($e->getMessage() === 'SERVICE_UNAVAILABLE') {
-                    throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.', $e);
-                }
-                if($e->getMessage() !== "MS_UNAVAILABLE") {
-                    return false;
+        
+        return $this->data->valid ?? false;
+    }
+    
+    public function get() {
+        $this->load();
+        return $this->data;
+    }
+    
+    public function parse() {
+        if(empty($this->data)) {
+            $this->load();
+        }
+        
+        $street = null;
+        $zipcode = null;
+        $city = null;
+        
+        if(isset($this->data->address)) {
+            $data = explode("\n", $this->data->address);
+            $j = 0;
+            for($i = 0; $i < count($data); $i++) {
+                if(!empty($data[$i])) {
+                    if($j === 0) {
+                        $street = $data[$i];
+                    } else if($j === 1) {
+                        $zipcode = substr($data[$i], 0, strpos($data[$i], ' '));
+                        $city = trim(substr($data[$i], strpos($data[$i], ' ')));
+                    }
+                    
+                    $j++;
                 }
             }
         }
-        throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.');
+        
+        return (object) [
+            'countryCode' => $this->data->countryCode ?? null,
+            'vatNumber' => $this->data->vatNumber ?? null,
+            'requestDate' => $this->data->requestDate ?? null,
+            'valid' => $this->data->valid ?? false,
+            'name' => $this->data->name ?? null,
+            'street' => $street,
+            'zipcode' => $zipcode,
+            'city' => $city,
+            'address' => $this->data->address ?? null,
+        ];
     }
-    
-    
-    public function get() {
+
+    public function load() {
         try {
             $client = new SoapClient(self::VAT_SERVICE_URL);
         } catch (SoapFault $e) {
@@ -113,13 +139,14 @@ class Vat
                     'countryCode' => $this->country,
                     'vatNumber'   => $this->number,
                 ]);
-                return $result->valid;
+                $this->data = $result;
+                return $this;
             } catch (SoapFault $e) {
                 if($e->getMessage() === 'SERVICE_UNAVAILABLE') {
                     throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.', $e);
                 }
                 if($e->getMessage() !== "MS_UNAVAILABLE") {
-                    return false;
+                    return $this;
                 }
             }
         }
@@ -132,8 +159,11 @@ class Vat
         return $vat;
     }
     
-    public function vatFormat() {
-        return substr($this->vat, 0, 3) . wordwrap(substr($this->vat, 3), 3, '.', true);
+    public function format() {
+        if($this->country === 'BE') {
+            return substr($this->vat, 0, 3) . wordwrap(substr($this->vat, 3), 3, '.', true);
+        }
+        return $this->vat;
     }
     
     private function setCountry() {
