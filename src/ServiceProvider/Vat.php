@@ -4,6 +4,7 @@ namespace MadeITBelgium\Vat\ServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use MadeITBelgium\Vat\Vat as V;
+use Illuminate\Support\Facades\Validator;
 
 /**
  *
@@ -73,8 +74,6 @@ class Vat extends ServiceProvider
     protected function extendValidator($rule)
     {
         $method = 'validate' . Str::studly($rule);
-        $translation = $this->app['translator']->get('vat::validation');
-
-        //$this->app['validator']->extend($rule, 'MadeITBelgium\Vat\Validation\ValidatorExtensions@' . $method, $translation[$rule]);
+        Validator::extend($rule, 'MadeITBelgium\Vat\Validation\ValidatorExtensions@' . $method);
     }
 }
