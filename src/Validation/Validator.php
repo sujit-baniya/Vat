@@ -1,4 +1,4 @@
-<?php namespace MadeITBelgium\Vat\validation;
+<?php namespace MadeITBelgium\Vat\Validation;
 
 use MadeITBelgium\Vat\Vat;
 
