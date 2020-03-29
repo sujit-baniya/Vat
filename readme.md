@@ -1,33 +1,33 @@
 # PHP VAT Library
-[![Build Status](https://travis-ci.org/TPWeb/Vat.svg?branch=master)](https://travis-ci.org/TPWeb/Vat)
-[![Coverage Status](https://coveralls.io/repos/github/TPWeb/vat/badge.svg?branch=master)](https://coveralls.io/github/TPWeb/vat?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/tpweb/vat/v/stable.svg)](https://packagist.org/packages/tpweb/vat)
-[![Latest Unstable Version](https://poser.pugx.org/tpweb/vat/v/unstable.svg)](https://packagist.org/packages/tpweb/vat)
-[![Total Downloads](https://poser.pugx.org/tpweb/vat/d/total.svg)](https://packagist.org/packages/tpweb/vat)
-[![License](https://poser.pugx.org/tpweb/vat/license.svg)](https://packagist.org/packages/tpweb/vat)
+[![Build Status](https://travis-ci.org/MadeITBelgium/Vat.svg?branch=master)](https://travis-ci.org/MadeITBelgium/Vat)
+[![Coverage Status](https://coveralls.io/repos/github/MadeITBelgium/vat/badge.svg?branch=master)](https://coveralls.io/github/MadeITBelgium/vat?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/madeitbelgium/vat/v/stable.svg)](https://packagist.org/packages/madeitbelgium/vat)
+[![Latest Unstable Version](https://poser.pugx.org/madeitbelgium/vat/v/unstable.svg)](https://packagist.org/packages/madeitbelgium/vat)
+[![Total Downloads](https://poser.pugx.org/madeitbelgium/vat/d/total.svg)](https://packagist.org/packages/madeitbelgium/vat)
+[![License](https://poser.pugx.org/madeitbelgium/vat/license.svg)](https://packagist.org/packages/madeitbelgium/vat)
 
 #Installation
 
 Require this package in your `composer.json` and update composer.
 
 ```php
-"tpweb/vat": "^1.3"
+"madeitbelgium/vat": "^1.3"
 ```
 Or
 ```php
-composer require tpweb/vat
+composer require madeitbelgium/vat
 ```
 
 After updating composer, add the ServiceProvider to the providers array in `config/app.php`
 
 ```php
-TPWeb\Vat\VatServiceProvider::class,
+MadeITBelgium\Vat\VatServiceProvider::class,
 ```
 
 You can use the facade for shorter code. Add this to your aliases:
 
 ```php
-'Vat' => TPWeb\Vat\VatFacade::class,
+'Vat' => MadeITBelgium\Vat\VatFacade::class,
 ```
 
 # Documentation
@@ -64,7 +64,7 @@ echo $generator->generateOGM(1, "111"); //Output: 111000000195
 echo $generator->generateOGM(2, "333", true); //Output: 333/0000/00290
 ```
 
-The complete documentation can be found at: [http://www.tpweb.org/my-projects/php-vat-library/](http://www.tpweb.org/my-projects/php-vat-library/)
+The complete documentation can be found at: [http://www.madeitbelgium.org/my-projects/php-vat-library/](http://www.madeitbelgium.org/my-projects/php-vat-library/)
 
 # Support
 
