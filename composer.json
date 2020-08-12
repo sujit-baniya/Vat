@@ -1,8 +1,8 @@
 {
   "name": "madeitbelgium/vat",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "PHP VAT Library",
-  "keywords": ["vat validation", "vat", "ogm"],
+  "keywords": ["vat validation", "vat", "ogm", "laravel"],
   "homepage": "http://www.madeit.be/",
   "type": "library",
   "license": "LGPL-3.0-or-later",
