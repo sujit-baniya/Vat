@@ -42,6 +42,7 @@ class Vat
      */
     public function setVat($vat) {
         $this->vat = $vat;
+        $this->data = null;
         if($vat != null && strlen($vat) > 0) {
             $this->vat = $this->VatClearFormat();
             $this->number = $this->setNumber();
