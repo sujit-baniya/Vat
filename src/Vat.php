@@ -143,12 +143,15 @@ class Vat
                 $this->data = $result;
                 return $this;
             } catch (SoapFault $e) {
+                if($e->getMessage() === "INVALID_INPUT") {
+                    throw new Exception('Invalid input ' . $this->country . ' ' . $this->number);
+                }
                 if($e->getMessage() === 'SERVICE_UNAVAILABLE') {
                     throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.', $e);
                 }
-                if($e->getMessage() !== "MS_UNAVAILABLE") {
+                /*if($e->getMessage() !== "MS_UNAVAILABLE") {
                     return $this;
-                }
+                }*/
             }
         }
         throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.');
