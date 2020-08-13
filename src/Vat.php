@@ -149,9 +149,10 @@ class Vat
                 if($e->getMessage() === 'SERVICE_UNAVAILABLE') {
                     throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.', $e);
                 }
-                /*if($e->getMessage() !== "MS_UNAVAILABLE") {
+                if($e->getMessage() !== "MS_UNAVAILABLE") {
+                    throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.', $e);
                     return $this;
-                }*/
+                }
             }
         }
         throw new ServiceUnavailableException('The VAT check service is currently unavailable. Please try again later.');
