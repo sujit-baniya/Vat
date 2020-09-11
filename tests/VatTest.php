@@ -1,9 +1,10 @@
 <?php
 use TPWeb\Vat\Vat;
+use PHPUnit\Framework\TestCase;
 
-class VatTest extends \PHPUnit_Framework_TestCase
+class VatTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
