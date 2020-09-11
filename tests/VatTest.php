@@ -1,5 +1,5 @@
 <?php
-use TPWeb\Vat\Vat;
+use MadeITBelgium\Vat\Vat;
 use PHPUnit\Framework\TestCase;
 
 class VatTest extends TestCase
