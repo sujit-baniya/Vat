@@ -2,10 +2,11 @@
 use TPWeb\Vat\Vat;
 use TPWeb\Vat\Validation\ValidatorExtensions;
 use Illuminate\Validation\Factory;
+use PHPUnit\Framework\TestCase;
 
-class validateTest extends \PHPUnit_Framework_TestCase
+class validateTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
