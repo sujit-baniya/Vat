@@ -56,6 +56,7 @@ class validateTest extends TestCase
         $translator->shouldReceive('get')->once()->with('validation.custom')->andReturn('validation.custom');
         $translator->shouldReceive('get')->once()->with('validation.vat')->andReturn('validation.vat');
         $translator->shouldReceive('get')->once()->with('validation.attributes')->andReturn('validation.attributes');
+        $translator->shouldReceive('get')->once()->with('validation.values.foo.BE0650005818')->andReturn('validation.values.foo.BE0650005818');
 
         $factory = new Factory($translator, $container);
         $factory->extend('vat', 'MadeITBelgium\Vat\Validation\ValidatorExtensions@validateVat', ':attribute must be a valid VAT');
