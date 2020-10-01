@@ -6,12 +6,12 @@
 [![Total Downloads](https://poser.pugx.org/madeitbelgium/vat/d/total.svg)](https://packagist.org/packages/madeitbelgium/vat)
 [![License](https://poser.pugx.org/madeitbelgium/vat/license.svg)](https://packagist.org/packages/madeitbelgium/vat)
 
-#Installation
+# Installation
 
 Require this package in your `composer.json` and update composer.
 
 ```php
-"madeitbelgium/vat": "^1.5"
+"madeitbelgium/vat": "^1.6"
 ```
 Or
 ```php
